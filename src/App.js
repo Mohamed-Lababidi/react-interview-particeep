@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MoviesList from "./components/MoviesList"
+import './App.css'
 
-function App() {
+class App extends React.Component {
+
+  state = {
+    category: ''
+  }
+
+  handleChange = (e) => {
+    this.setState({category: e.target.value})
+  }
+
+  render() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+          <select className="app-select" onChange={this.handleChange}>
+            <option id="Default"></option>
+            <option id="Comedy">Comedy</option>
+            <option id="Animation">Animation</option>
+            <option id="Thriller">Thriller</option>
+            <option id="Drame">Drame</option>
+          </select>
+   <MoviesList category={this.state.category}/>
     </div>
   );
 }
-
+}
 export default App;
